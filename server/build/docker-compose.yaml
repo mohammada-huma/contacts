@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:17
+    container_name: contacts_postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: huma
+      POSTGRES_USER: huma
+      POSTGRES_PASSWORD: pass123
+      PGDATA: /data/postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - contacts_pgdata:/data/postgres
+    networks:
+      - contacts_network
+
+volumes:
+  contacts_pgdata:
+
+networks:
+  contacts_network:
